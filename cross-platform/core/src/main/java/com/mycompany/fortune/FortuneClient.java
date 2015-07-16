@@ -37,18 +37,6 @@ public class FortuneClient {
                 .setEndpoint(API_URL)
                 .build();
         service = adapter.create(FortuneService.class);
-        HttpAutomationClient client = new HttpAutomationClient
-                ("https://nightly.nuxeo.com/nuxeo/site/automation", 60000);
-
-        Session session = null;
-        try {
-            session = client.getSession();
-            root = (Document) session.newRequest("Repository.GetDocument")
-                    .set("value", "/").execute();
-            System.out.println(root.getTitle());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void getFortune(final OnFortuneListener listener) {
@@ -60,7 +48,22 @@ public class FortuneClient {
 
             @Override
             public void failure(RetrofitError error) {
-                listener.onFortune(error.toString());
+                HttpAutomationClient client = new HttpAutomationClient("http://localhost:8080/nuxeo/site/automation");
+                Session session = null;
+                try {
+                    session = client.getSession("Administrator",
+                                "Administrator");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Document root = null;
+                try {
+                    root = (Document) session.newRequest("Repository" +
+                            ".GetDocument").set("value", "/").execute();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                listener.onFortune(root.getTitle());
             }
         });
     }

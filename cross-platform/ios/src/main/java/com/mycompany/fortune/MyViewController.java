@@ -29,7 +29,7 @@ public class MyViewController extends UIViewController {
         });
     }
 
-    private void setFortune(String fortune) {
+    private void setFortune(final String fortune) {
         DispatchQueue.getMainQueue().sync(new Runnable() {
             @Override
             public void run() {

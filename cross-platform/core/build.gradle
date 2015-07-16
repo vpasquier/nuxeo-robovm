@@ -22,6 +22,7 @@ dependencies {
         exclude module: 'commons-logging'
         exclude module: 'httpcore-osgi'
         exclude module: 'httpclient-osgi'
+        exclude module: 'httpclient'
     }
     compile 'com.squareup.retrofit:retrofit:1.9.0'
 }
