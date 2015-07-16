@@ -16,6 +16,12 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile ('org.nuxeo.ecm.automation:nuxeo-automation-client:7.4-SNAPSHOT')
+    compile ('org.nuxeo.ecm.automation:nuxeo-automation-client:7.4-SNAPSHOT'){
+        exclude module: 'httpcore-nio'
+        exclude module: 'commons-codec'
+        exclude module: 'commons-logging'
+        exclude module: 'httpcore-osgi'
+        exclude module: 'httpclient-osgi'
+    }
     compile 'com.squareup.retrofit:retrofit:1.9.0'
 }
