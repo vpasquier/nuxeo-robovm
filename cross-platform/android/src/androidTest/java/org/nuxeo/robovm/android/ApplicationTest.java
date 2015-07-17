@@ -1,4 +1,4 @@
-package com.mycompany.fortune.android;
+package org.nuxeo.robovm.android;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

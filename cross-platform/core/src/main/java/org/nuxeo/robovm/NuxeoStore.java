@@ -1,10 +1,10 @@
-package com.mycompany.fortune;
+package org.nuxeo.robovm;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class FortuneStore {
+public class NuxeoStore {
     private List<String> fortunes = Arrays.asList(
             "RoboVM rocks!",
             "RoboVM is awesome!"

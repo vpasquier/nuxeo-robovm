@@ -1,4 +1,4 @@
-package com.mycompany.fortune;
+package org.nuxeo.robovm;
 
 import org.robovm.apple.dispatch.DispatchQueue;
 import org.robovm.apple.uikit.UILabel;
@@ -9,8 +9,7 @@ import org.robovm.objc.annotation.IBOutlet;
 
 @CustomClass("MyViewController")
 public class MyViewController extends UIViewController {
-    private static FortuneStore fortuneStore = new FortuneStore();
-    private static FortuneClient fortuneClient = new FortuneClient();
+    private static NuxeoClient nuxeoClient = new NuxeoClient();
 
     private UILabel label;
 
@@ -21,19 +20,19 @@ public class MyViewController extends UIViewController {
 
     @IBAction
     private void clicked() {
-        fortuneClient.getFortune(new FortuneClient.OnFortuneListener() {
+        nuxeoClient.getDocumentTitle(new NuxeoClient.OnNuxeoListener() {
             @Override
-            public void onFortune(String fortune) {
-                setFortune(fortune);
+            public void onClick(String title) {
+                setTitle(title);
             }
         });
     }
 
-    private void setFortune(final String fortune) {
+    public void setTitle(final String title) {
         DispatchQueue.getMainQueue().sync(new Runnable() {
             @Override
             public void run() {
-                label.setText(fortune);
+                label.setText(title);
             }
         });
     }
